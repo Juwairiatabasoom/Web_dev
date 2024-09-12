@@ -1,0 +1,19 @@
+from bs4 import BeautifulSoup
+
+with open("website.html") as file:
+    contents=file.read()
+
+soup=BeautifulSoup(contents,"html.parser")
+print(soup.title)
+print(soup.title.name) #name of the header
+print(soup.title.string) #name of the string
+print(soup.prettify()) #indents the soup
+print(soup.a) #prints first anchor
+
+# to find all tags of an element like anchor
+all_anchor_tags= soup.find_all(name="a") #gives all anchor tags
+heading=soup.find_all(name="h1",id="name") #can give as many as attributes you want for find_all function
+heading_other=soup.find_all(name="h3",class_="heading") #must use class_ instead of "class" beacuse of clashing with creating a class in OOP
+#to find only text in all anchor tags:
+for tag in all_anchor_tags:
+    print(tag.getText())
